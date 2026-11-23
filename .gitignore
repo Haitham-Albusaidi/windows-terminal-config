@@ -1,0 +1,12 @@
+# Windows thumbnail and desktop files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Temporary files
+*.tmp
+*.log
+
+# Editor directories
+.vscode/
+.idea/

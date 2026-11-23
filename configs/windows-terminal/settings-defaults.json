@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "defaults": {
+      "colorScheme": "One Half Dark",
+      "font": {
+        "face": "JetBrainsMono Nerd Font"
+      },
+      "opacity": 85,
+      "useAcrylic": true,
+      "cursorShape": "bar",
+      "cursorMotionType": "smooth"
+    }
+  }
+}
