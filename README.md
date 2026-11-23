@@ -1,4 +1,4 @@
-﻿# Windows Terminal, PowerShell & CMD Setup
+# Windows Terminal, PowerShell & CMD Setup
 
 My personal dotfiles and configuration to make Windows Terminal, PowerShell, and Command Prompt (`cmd.exe`) look great and feel fast.
 
