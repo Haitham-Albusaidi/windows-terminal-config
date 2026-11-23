@@ -4,6 +4,9 @@ if (Test-Path "$env:LOCALAPPDATA\Microsoft\WindowsApps\motd.ps1") {
 }
 function motd { & "$env:LOCALAPPDATA\Microsoft\WindowsApps\motd.ps1" }
 
+# Quick Explorer opener
+function open { explorer.exe (if ($args) { $args } else { "." }) }
+
 # Ensure winget portable packages and apps are in PATH
 $extraPaths = @(
     "$env:LOCALAPPDATA\Microsoft\WindowsApps",
@@ -19,7 +22,7 @@ foreach ($p in $extraPaths) {
 # Oh My Posh initialization (uses built-in default theme)
 oh-my-posh init pwsh | Invoke-Expression
 
-# Predictive autocomplete (for PSReadLine 2.2.0+)
+# Predictive autocomplete & smart history search (for PSReadLine 2.2.0+)
 Import-Module PSReadLine -ErrorAction SilentlyContinue
 $psrl = Get-Module PSReadLine
 if ($psrl -and $psrl.Version -ge [Version]'2.2.0') {
@@ -27,6 +30,9 @@ if ($psrl -and $psrl.Version -ge [Version]'2.2.0') {
     Set-PSReadLineOption -PredictionViewStyle InlineView -ErrorAction SilentlyContinue
     Set-PSReadLineKeyHandler -Key Tab -Function Complete -ErrorAction SilentlyContinue
     Set-PSReadLineKeyHandler -Key RightArrow -Function AcceptSuggestion -ErrorAction SilentlyContinue
+    # Smart history navigation (matches prefix of what you already typed)
+    Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward -ErrorAction SilentlyContinue
+    Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward -ErrorAction SilentlyContinue
 }
 
 # Zoxide smart directory jumping (z and zi)

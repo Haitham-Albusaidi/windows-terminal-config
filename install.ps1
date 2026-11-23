@@ -3,7 +3,7 @@
     Automated full installer for Windows Terminal, PowerShell, and CMD enhancements.
 .DESCRIPTION
     Installs Oh My Posh, Nerd Fonts, Clink, modern CLI tools (eza, bat, zoxide, lazygit,
-    ripgrep, bottom, fzf), custom Linux MOTD, and configures Windows Terminal visual aesthetics.
+    ripgrep, bottom, fzf, delta, dust, tldr), custom Linux MOTD, and configures Windows Terminal visual aesthetics.
     Designed for unattended execution by AI agents or users.
 #>
 
@@ -38,7 +38,10 @@ $packages = @(
     @{ Id = "BurntSushi.ripgrep.MSVC"; Name = "ripgrep" },
     @{ Id = "Clement.bottom"; Name = "bottom (system monitor)" },
     @{ Id = "eza-community.eza"; Name = "eza (color ls)" },
-    @{ Id = "sharkdp.bat"; Name = "bat (syntax highlighting cat)" }
+    @{ Id = "sharkdp.bat"; Name = "bat (syntax highlighting cat)" },
+    @{ Id = "dandavison.delta"; Name = "delta (git diff pager)" },
+    @{ Id = "bootandy.dust"; Name = "dust (disk visualizer)" },
+    @{ Id = "dbrgn.tealdeer"; Name = "tealdeer (tldr cheat sheets)" }
 )
 
 foreach ($pkg in $packages) {
@@ -115,7 +118,19 @@ git config --global color.status auto
 git config --global color.branch auto
 git config --global color.diff auto
 git config --global color.interactive auto
-Write-Host "  ✓ Git colors enabled" -ForegroundColor Green
+git config --global core.pager "delta"
+git config --global interactive.diffFilter "delta --color-only"
+git config --global delta.navigate true
+git config --global delta.light false
+git config --global delta.line-numbers true
+git config --global delta.syntax-theme "OneHalfDark"
+Write-Host "  ✓ Git colors and delta pager enabled" -ForegroundColor Green
+
+# Update tldr cache
+try {
+    & tldr --update 2>$null | Out-Null
+    Write-Host "  ✓ tldr cache initialized" -ForegroundColor Green
+} catch {}
 
 $terminalSettings = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
 if (Test-Path $terminalSettings) {
@@ -134,8 +149,17 @@ if (Test-Path $terminalSettings) {
             $settings.profiles.defaults.font.face = "JetBrainsMono Nerd Font"
         }
         
+        # Tab colors
+        foreach ($p in $settings.profiles.list) {
+            if ($p.name -match "PowerShell") {
+                $p | Add-Member -NotePropertyName "tabColor" -NotePropertyValue "#1B2A4A" -Force
+            } elseif ($p.name -match "Command Prompt") {
+                $p | Add-Member -NotePropertyName "tabColor" -NotePropertyValue "#282C34" -Force
+            }
+        }
+        
         $settings | ConvertTo-Json -Depth 25 | Set-Content $terminalSettings -Encoding utf8
-        Write-Host "  ✓ Windows Terminal visual settings configured (One Half Dark, Acrylic 85%, JetBrainsMono NF)" -ForegroundColor Green
+        Write-Host "  ✓ Windows Terminal visual settings configured (One Half Dark, Acrylic 85%, JetBrainsMono NF, Tab Colors)" -ForegroundColor Green
     } catch {
         Write-Warning "  ! Could not patch Windows Terminal settings: $_"
     }

@@ -14,7 +14,12 @@ It includes:
   - `lazygit` (`lg`) for an interactive terminal Git UI.
   - `ripgrep` (`rg`) for fast code searches.
   - `bottom` (`btm`) for a terminal-based system/process monitor.
-- **Windows Terminal Styling**: One Half Dark theme, 85% acrylic frosted glass background, and smooth cursor animation.
+  - `delta` for syntax-highlighted, word-level Git diffs.
+  - `dust` for an interactive, visual disk space analyzer.
+  - `tldr` for quick practical examples of any command.
+- **Smart History Navigation**: Up/Down Arrow automatically matches the prefix of whatever you started typing.
+- **`open .` Shortcut**: Quickly opens the current directory in Windows File Explorer.
+- **Windows Terminal Styling**: One Half Dark theme, 85% acrylic frosted glass background, tab accent colors, and smooth cursor animation.
 
 ---
 
@@ -40,11 +45,15 @@ Once it finishes, restart Windows Terminal and everything will be active.
 | `ll` | Detailed list with file sizes, permissions, and git status | `ll` |
 | `tree` | Visual directory tree | `tree` |
 | `cat <file>` | View file contents with syntax highlighting and line numbers | `cat package.json` |
+| `open [dir]` | Open any directory (or current folder with `open .`) in File Explorer | `open .` |
 | `z <folder>` | Jump to any recently visited directory without full paths | `z MyProject` |
 | `zi` | Interactive fuzzy folder picker | `zi` |
 | `lg` | Open LazyGit visual interface (press `q` to exit) | `lg` |
 | `rg "<text>"` | Fast text search across files in the project | `rg "API_KEY"` |
 | `btm` | Live graphical CPU/RAM/process monitor (press `q` to exit) | `btm` |
+| `dust` | Visual tree of what files and folders are taking up disk space | `dust` |
+| `tldr <cmd>` | Practical cheatsheet examples for any command | `tldr git commit` |
+| `git diff` | Syntax-highlighted word-level diff viewer via Delta | `git diff` |
 | `motd` | Re-print the startup banner and live system stats | `motd` |
 
 ---
@@ -69,11 +78,15 @@ windows-terminal-config/
     ├── ll.cmd                                # eza detailed wrapper
     ├── tree.cmd                              # eza tree wrapper
     ├── cat.cmd                               # bat wrapper
+    ├── open.cmd                              # explorer.exe wrapper
     ├── z.cmd                                 # zoxide wrapper
     ├── zi.cmd                                # zoxide interactive wrapper
     ├── lg.cmd / lazygit.cmd                  # lazygit wrapper
     ├── rg.cmd                                # ripgrep wrapper
     ├── btm.cmd                               # bottom wrapper
+    ├── dust.cmd                              # dust wrapper
+    ├── tldr.cmd                              # tldr wrapper
+    ├── delta.cmd                             # delta wrapper
     └── fzf.cmd                               # fzf wrapper
 ```
 
@@ -85,7 +98,7 @@ If you'd rather not run `install.ps1` and want to set things up manually:
 
 1. **Install the tools via winget:**
    ```powershell
-   winget install JanDeDobbeleer.OhMyPosh DEVCOM.JetBrainsMonoNerdFont chrisant996.Clink ajeetdsouza.zoxide JesseDuffield.lazygit junegunn.fzf BurntSushi.ripgrep.MSVC Clement.bottom eza-community.eza sharkdp.bat -s winget
+   winget install JanDeDobbeleer.OhMyPosh DEVCOM.JetBrainsMonoNerdFont chrisant996.Clink ajeetdsouza.zoxide JesseDuffield.lazygit junegunn.fzf BurntSushi.ripgrep.MSVC Clement.bottom eza-community.eza sharkdp.bat dandavison.delta bootandy.dust dbrgn.tealdeer -s winget
    ```
 
 2. **Register Clink for CMD:**
@@ -93,14 +106,23 @@ If you'd rather not run `install.ps1` and want to set things up manually:
    clink autorun install
    ```
 
-3. **Copy the scripts & configs:**
+3. **Configure Git with Delta:**
+   ```cmd
+   git config --global core.pager "delta"
+   git config --global interactive.diffFilter "delta --color-only"
+   git config --global delta.navigate true
+   git config --global delta.line-numbers true
+   git config --global delta.syntax-theme "OneHalfDark"
+   ```
+
+4. **Copy the scripts & configs:**
    * Copy everything in `bin/` to `%LOCALAPPDATA%\Microsoft\WindowsApps\`
    * Copy `configs/clink/oh-my-posh.lua` to `%LOCALAPPDATA%\clink\oh-my-posh.lua`
    * Copy `configs/powershell/Microsoft.PowerShell_profile.ps1` to:
      `%USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1`
      *(and to `%USERPROFILE%\Documents\PowerShell\Microsoft.PowerShell_profile.ps1` if using PowerShell 7)*
 
-4. **Configure Windows Terminal:**
+5. **Configure Windows Terminal:**
    * Open Settings (`Ctrl + ,`) -> **Defaults** -> **Appearance**:
      * **Font face**: `JetBrainsMono Nerd Font`
      * **Color scheme**: `One Half Dark`

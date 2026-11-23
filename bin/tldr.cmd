@@ -1,0 +1,2 @@
+@echo off
+"C:\Users\Tanka\AppData\Local\Microsoft\WinGet\Packages\dbrgn.tealdeer_Microsoft.Winget.Source_8wekyb3d8bbwe\tldr.exe" %*
