@@ -39,7 +39,7 @@ powershell.exe -ExecutionPolicy Bypass -File .\install.ps1
 Clone this repository and run the installer in PowerShell as an administrator or current user:
 
 ```powershell
-git clone https://github.com/Tankasuar/windows-terminal-config.git windows-terminal-config
+git clone https://github.com/Haitham-Albusaidi/windows-terminal-config.git windows-terminal-config
 cd windows-terminal-config
 powershell.exe -ExecutionPolicy Bypass -File .\install.ps1
 ```
@@ -132,4 +132,5 @@ If you prefer to configure everything manually without using `install.ps1`:
      * **Color scheme:** `One Half Dark`
      * **Transparency:** `85%` + check *Enable acrylic material*
      * **Cursor:** `Bar` + `Smooth`
+
 
