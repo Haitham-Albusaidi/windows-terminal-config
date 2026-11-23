@@ -5,7 +5,7 @@ My personal dotfiles and configuration to make Windows Terminal, PowerShell, and
 It includes:
 - **Oh My Posh** prompt with custom icons and git status.
 - **JetBrainsMono Nerd Font** so icons render properly without missing glyph boxes.
-- **Linux-style MOTD**: Shows an ASCII "HELLO WORLD" banner and system stats (OS, CPU, RAM, Disk, Uptime) when opening a tab.
+- **Linux-style MOTD**: Shows an ASCII "HELLO WORLD" banner and system stats (OS, CPU, RAM, Disk, Uptime) on startup and whenever you type `cls` or `clear`.
 - **Clink**: Brings history auto-suggestions, Oh My Posh, and readline shortcuts into classic `cmd.exe`.
 - **Modern CLI replacements**:
   - `eza` for colorful `ls` / `ll` / `tree` with icons.
@@ -54,6 +54,7 @@ Once it finishes, restart Windows Terminal and everything will be active.
 | `dust` | Visual tree of what files and folders are taking up disk space | `dust` |
 | `tldr <cmd>` | Practical cheatsheet examples for any command | `tldr git commit` |
 | `git diff` | Syntax-highlighted word-level diff viewer via Delta | `git diff` |
+| `cls` / `clear` | Clear screen and refresh live system stats banner | `cls` |
 | `motd` | Re-print the startup banner and live system stats | `motd` |
 
 ---
