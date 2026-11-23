@@ -1,10 +1,10 @@
-# Modern Windows Terminal & Shell Environment
+﻿# Modern Windows Terminal & Shell Environment
 
 A curated, automated dotfiles and configuration suite that transforms **Windows Terminal**, **PowerShell**, and **Command Prompt (`cmd.exe`)** into a modern, colorful, and productive CLI environment with Oh My Posh, Nerd Fonts, Linux-style MOTD, and modern Rust-based command replacements.
 
 ---
 
-## 🤖 Instructions for AI Assistants (Antigravity, Cursor, etc.)
+## ðŸ¤– Instructions for AI Assistants (Antigravity, Cursor, etc.)
 
 If you are an AI assistant tasked with installing this environment on a Windows machine, follow this single step:
 
@@ -34,12 +34,12 @@ powershell.exe -ExecutionPolicy Bypass -File .\install.ps1
 
 ---
 
-## 🚀 Quick Install (for Humans)
+## ðŸš€ Quick Install (for Humans)
 
 Clone this repository and run the installer in PowerShell as an administrator or current user:
 
 ```powershell
-git clone <YOUR_REPO_URL> windows-terminal-config
+git clone https://github.com/Tankasuar/windows-terminal-config.git windows-terminal-config
 cd windows-terminal-config
 powershell.exe -ExecutionPolicy Bypass -File .\install.ps1
 ```
@@ -48,7 +48,7 @@ Restart your terminal, and you're good to go!
 
 ---
 
-## ⚡ Command Cheatsheet
+## âš¡ Command Cheatsheet
 
 | Command | Tool | What it does | Example |
 | :--- | :--- | :--- | :--- |
@@ -66,7 +66,7 @@ Restart your terminal, and you're good to go!
 
 ---
 
-## 🎨 Visual Features
+## ðŸŽ¨ Visual Features
 
 * **Glass Transparency:** Window background set to **85% opacity** with smooth Windows 11 acrylic frosted blur.
 * **Smooth Animated Cursor:** Cursor set to a smooth gliding bar.
@@ -75,38 +75,38 @@ Restart your terminal, and you're good to go!
 
 ---
 
-## 📁 Repository Structure
+## ðŸ“ Repository Structure
 
 ```
 .
-├── install.ps1                               # 1-click automated installer
-├── README.md                                 # Documentation & usage guide
-├── configs/
-│   ├── powershell/
-│   │   └── Microsoft.PowerShell_profile.ps1  # PSReadLine, Oh My Posh, zoxide, aliases
-│   ├── clink/
-│   │   └── oh-my-posh.lua                    # Clink autorun script & doskey bindings
-│   └── windows-terminal/
-│       └── settings-defaults.json            # Reference visual settings for Terminal
-└── bin/
-    ├── motd.ps1                              # Linux-style live stats & ASCII art banner
-    ├── motd.cmd                              # Universal runner for motd
-    ├── ls.cmd                                # eza runner
-    ├── ll.cmd                                # eza detailed runner
-    ├── tree.cmd                              # eza tree runner
-    ├── cat.cmd                               # bat runner
-    ├── z.cmd                                 # zoxide runner
-    ├── zi.cmd                                # zoxide interactive runner
-    ├── lg.cmd                                # lazygit runner
-    ├── lazygit.cmd                           # lazygit full runner
-    ├── rg.cmd                                # ripgrep runner
-    ├── btm.cmd                               # bottom runner
-    └── fzf.cmd                               # fzf runner
+â”œâ”€â”€ install.ps1                               # 1-click automated installer
+â”œâ”€â”€ README.md                                 # Documentation & usage guide
+â”œâ”€â”€ configs/
+â”‚   â”œâ”€â”€ powershell/
+â”‚   â”‚   â””â”€â”€ Microsoft.PowerShell_profile.ps1  # PSReadLine, Oh My Posh, zoxide, aliases
+â”‚   â”œâ”€â”€ clink/
+â”‚   â”‚   â””â”€â”€ oh-my-posh.lua                    # Clink autorun script & doskey bindings
+â”‚   â””â”€â”€ windows-terminal/
+â”‚       â””â”€â”€ settings-defaults.json            # Reference visual settings for Terminal
+â””â”€â”€ bin/
+    â”œâ”€â”€ motd.ps1                              # Linux-style live stats & ASCII art banner
+    â”œâ”€â”€ motd.cmd                              # Universal runner for motd
+    â”œâ”€â”€ ls.cmd                                # eza runner
+    â”œâ”€â”€ ll.cmd                                # eza detailed runner
+    â”œâ”€â”€ tree.cmd                              # eza tree runner
+    â”œâ”€â”€ cat.cmd                               # bat runner
+    â”œâ”€â”€ z.cmd                                 # zoxide runner
+    â”œâ”€â”€ zi.cmd                                # zoxide interactive runner
+    â”œâ”€â”€ lg.cmd                                # lazygit runner
+    â”œâ”€â”€ lazygit.cmd                           # lazygit full runner
+    â”œâ”€â”€ rg.cmd                                # ripgrep runner
+    â”œâ”€â”€ btm.cmd                               # bottom runner
+    â””â”€â”€ fzf.cmd                               # fzf runner
 ```
 
 ---
 
-## 🛠️ Manual Installation (Step-by-Step)
+## ðŸ› ï¸ Manual Installation (Step-by-Step)
 
 If you prefer to configure everything manually without using `install.ps1`:
 
@@ -132,3 +132,4 @@ If you prefer to configure everything manually without using `install.ps1`:
      * **Color scheme:** `One Half Dark`
      * **Transparency:** `85%` + check *Enable acrylic material*
      * **Cursor:** `Bar` + `Smooth`
+
