@@ -1,8 +1,21 @@
-﻿# Show Linux-style MOTD banner on startup
-if (Test-Path "$env:LOCALAPPDATA\Microsoft\WindowsApps\motd.ps1") {
-    & "$env:LOCALAPPDATA\Microsoft\WindowsApps\motd.ps1"
+﻿# MOTD Function & Clear-Host override (cls always displays motd)
+function motd {
+    if (Test-Path "$env:LOCALAPPDATA\Microsoft\WindowsApps\motd.ps1") {
+        & "$env:LOCALAPPDATA\Microsoft\WindowsApps\motd.ps1"
+    }
 }
-function motd { & "$env:LOCALAPPDATA\Microsoft\WindowsApps\motd.ps1" }
+
+function Clear-Host {
+    try {
+        [Console]::Clear()
+    } catch {
+        Write-Host "$([char]27)[2J$([char]27)[H" -NoNewline
+    }
+    motd
+}
+
+# Show Linux-style MOTD banner on startup
+motd
 
 # Quick Explorer opener
 function open { explorer.exe (if ($args) { $args } else { "." }) }
